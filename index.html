@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Добрый дракон с седлом — Dragon-Creator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="sky">
+    <h1>Драконье логово</h1>
+    <p class="tagline">Создай доброго дракона с седлом и садись верхом.</p>
+  </header>
+
+  <main>
+    <section class="forge">
+      <div class="portrait" id="portrait" aria-live="polite"></div>
+
+      <form id="creator" class="panel">
+        <label>Имя
+          <input type="text" name="name" maxlength="32" placeholder="Например, Зорь" required />
+        </label>
+
+        <label>Вид
+          <select name="kind">
+            <option value="тёплый">Тёплый небесный</option>
+            <option value="лесной">Лесной хранитель</option>
+            <option value="речной">Речной страж</option>
+            <option value="звёздный">Звёздный странник</option>
+          </select>
+        </label>
+
+        <label>Чешуя
+          <input type="color" name="scale" value="#c45c26" />
+        </label>
+
+        <label>Глаза
+          <input type="color" name="eyes" value="#f4e27a" />
+        </label>
+
+        <label>Седло
+          <select name="saddle">
+            <option value="кожаное">Кожаное путешественника</option>
+            <option value="плетёное">Плетёное из ивы</option>
+            <option value="звёздное">Звёздное с фонариком</option>
+            <option value="мягкое">Мягкое облачное</option>
+          </select>
+        </label>
+
+        <label>Характер
+          <textarea name="nature" rows="3" maxlength="240" placeholder="Добрый, терпеливый, любит тёплый ветер и тихие вечера…"></textarea>
+        </label>
+
+        <div class="actions">
+          <button type="submit">Принять в стаю</button>
+          <button type="button" id="exportBtn" class="ghost">Скачать JSON</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="den">
+      <h2>Стая в логове</h2>
+      <ul id="flock"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Dragon-Creator · добрые драконы не кусаются, они носят.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
