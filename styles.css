@@ -63,18 +63,24 @@ main {
   overflow: hidden;
 }
 
+.portrait.flying {
+  background: linear-gradient(180deg, #4a7ea8, #cfe7f2 55%, #f3e0c4);
+}
+
+.portrait.flying .dragon {
+  animation: soar 2.4s ease-in-out infinite;
+}
+
+.portrait.flying .wing {
+  animation: flap 0.45s ease-in-out infinite alternate;
+}
+
 .dragon {
   width: min(280px, 90%);
   aspect-ratio: 1;
   border-radius: 50% 50% 46% 46%;
   position: relative;
   box-shadow: inset 0 -20px 30px rgba(0,0,0,0.15);
-}
-
-.dragon::before,
-.dragon::after {
-  content: "";
-  position: absolute;
 }
 
 .dragon .eye {
@@ -88,6 +94,43 @@ main {
 .dragon .eye.l { left: 22%; }
 .dragon .eye.r { right: 22%; }
 
+.horn {
+  position: absolute;
+  top: 6%;
+  width: 10%;
+  height: 18%;
+  background: inherit;
+  filter: brightness(0.85);
+  border-radius: 40% 40% 10% 10%;
+}
+.horn.l { left: 28%; transform: rotate(-18deg); }
+.horn.r { right: 28%; transform: rotate(18deg); }
+
+.wing {
+  position: absolute;
+  top: 28%;
+  width: 34%;
+  height: 28%;
+  background: inherit;
+  opacity: 0.85;
+  filter: brightness(0.9);
+  border-radius: 80% 20% 60% 40%;
+  z-index: 0;
+}
+.wing.l { left: -18%; transform-origin: right center; }
+.wing.r { right: -18%; transform: scaleX(-1); transform-origin: left center; }
+
+.tail {
+  position: absolute;
+  right: -8%;
+  bottom: 22%;
+  width: 28%;
+  height: 12%;
+  background: inherit;
+  border-radius: 40%;
+  transform: rotate(-20deg);
+}
+
 .saddle {
   position: absolute;
   left: 18%;
@@ -97,6 +140,7 @@ main {
   border-radius: 40% 40% 20% 20%;
   background: #6b3e24;
   box-shadow: 0 6px 0 #3d2416;
+  z-index: 1;
 }
 .saddle.wicker { background: repeating-linear-gradient(90deg, #8a5a32, #8a5a32 6px, #c0894a 6px, #c0894a 12px); }
 .saddle.star { background: linear-gradient(180deg, #2c3e6b, #6b4ea1); }
@@ -137,21 +181,59 @@ input, select, textarea, button {
   flex-wrap: wrap;
 }
 
-button {
+button, .file-btn {
   background: var(--ember);
   color: #fffaf2;
   border: none;
   cursor: pointer;
   padding: 0.7rem 1rem;
+  border-radius: 10px;
 }
 
-button.ghost {
+button.ghost, .file-btn.ghost {
   background: transparent;
   color: var(--ink);
   border: 1px solid #d4b48a;
 }
 
-.den { margin-top: 2rem; }
+.file-btn {
+  display: inline-grid;
+  place-items: center;
+}
+
+.den, .sky-map { margin-top: 2rem; }
+
+.sky-field {
+  position: relative;
+  min-height: 160px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #6aa4c4, #d7eef6);
+  box-shadow: inset 0 0 40px rgba(255,255,255,0.35);
+}
+
+.cloud {
+  position: absolute;
+  top: calc(18% + var(--i) * 22%);
+  left: calc(8% + var(--i) * 22%);
+  background: rgba(255,255,255,0.78);
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.flyer {
+  position: absolute;
+  width: 28px;
+  height: 18px;
+  border-radius: 50% 50% 40% 40%;
+  bottom: 28%;
+  animation: across 4s linear infinite;
+}
+
+.flight-log {
+  opacity: 0.85;
+}
 
 #flock {
   list-style: none;
@@ -176,8 +258,38 @@ button.ghost {
   font-size: 0.85rem;
 }
 
+.row-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
 footer {
   text-align: center;
   padding: 1rem;
   opacity: 0.7;
+}
+
+@keyframes soar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes flap {
+  from { transform: rotate(8deg); }
+  to { transform: rotate(-16deg); }
+}
+
+.portrait.flying .wing.r {
+  animation-name: flapR;
+}
+
+@keyframes flapR {
+  from { transform: scaleX(-1) rotate(8deg); }
+  to { transform: scaleX(-1) rotate(-16deg); }
+}
+
+@keyframes across {
+  from { left: -10%; }
+  to { left: 110%; }
 }
