@@ -53,9 +53,21 @@
 
         <div class="actions">
           <button type="submit">Принять в стаю</button>
+          <button type="button" id="flyBtn">Взлететь</button>
           <button type="button" id="exportBtn" class="ghost">Скачать JSON</button>
+          <label class="ghost file-btn">Загрузить JSON
+            <input type="file" id="importFile" accept="application/json,.json" hidden />
+          </label>
+          <button type="button" id="samplesBtn" class="ghost">Примеры из логова</button>
         </div>
       </form>
+    </section>
+
+    <section class="sky-map" id="skyMap" hidden>
+      <h2>Карта неба</h2>
+      <p id="flightLog" class="flight-log"></p>
+      <div class="sky-field" id="skyField"></div>
+      <button type="button" id="landBtn" class="ghost">Приземлиться</button>
     </section>
 
     <section class="den">
