@@ -19,7 +19,8 @@ const LANDMARKS = [
   "речную петлю с серебряной водой",
   "звёздный перевал",
   "тёплый ветер над поляной",
-  "маяк из старого фонарика"
+  "маяк из старого фонарика",
+  "весеннюю поляну с первыми цветами"
 ];
 
 function readFlock() {
@@ -48,7 +49,7 @@ function currentDragon() {
 function saddleClass(saddle) {
   if (saddle === "плетёное") return "wicker";
   if (saddle === "звёздное") return "star";
-  if (saddle === "мягкое") return "cloud";
+  if (saddle === "мягкое" || saddle === "облачное") return "cloud";
   return "leather";
 }
 
